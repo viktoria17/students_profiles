@@ -1,16 +1,26 @@
 const Profile = require('./profile');
 const renderer = require('./renderer');
+const querystring = require('querystring');
 
 const contentHeaders = {'Content-Type': 'text/html'};
 
 // Handle HTTP route GET / and POST / i.e. home
 const home = (req, res) => {
 	if (req.url === '/') {
-		res.writeHead(200, contentHeaders);
-		renderer.view('header', {}, res);
-		renderer.view('search', {}, res);
-		renderer.view('footer', {}, res);
-		res.end();
+		if (req.method.toLowerCase() === 'get') {
+			res.writeHead(200, contentHeaders);
+			renderer.view('header', {}, res);
+			renderer.view('search', {}, res);
+			renderer.view('footer', {}, res);
+			res.end();
+		} else {
+			req.on('data', (postBody) => {
+				// extract the username
+				const query = querystring.parse(postBody.toString());
+				res.write(query.username);
+				res.end();
+			});
+		}
 	}
 };
 
