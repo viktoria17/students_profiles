@@ -17,7 +17,9 @@ const home = (req, res) => {
 			req.on('data', (postBody) => {
 				// extract the username
 				const query = querystring.parse(postBody.toString());
-				res.write(query.username);
+				// redirect to /:username
+				// statusCode - 303, response header - location
+				res.writeHead(303, {'Location' :  '/' + query.username});
 				res.end();
 			});
 		}
