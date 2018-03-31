@@ -6,7 +6,7 @@ This is a simple dynamic website that displays a Treehouse student's profile inf
 
 <h4>Example of student's name:</h4>
 <p>1)Chalkers</p>
-<p>Result</p>
+<p>Result:</p>
 <p>Shows Chalkers photo and additional info</p>
 
 
