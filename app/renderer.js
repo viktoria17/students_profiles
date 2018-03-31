@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 function mergeContent(values, content) {
-	for (var key in values) {
+	for (let key in values) {
 		content = content.replace('{{' + key + "}}", values[key]);
 	}
 
